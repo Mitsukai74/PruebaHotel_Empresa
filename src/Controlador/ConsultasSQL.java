@@ -3,6 +3,7 @@ package Controlador;
 
 import Modelo.Conector;
 import Modelo.Huesped;
+import Modelo.Reserva;
 import Modelo.User;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -45,12 +46,37 @@ public class ConsultasSQL extends Conector{
         } 
            
     }
+    public boolean registarReserva(Reserva reserva){
+        Connection con = CrearConexion();
+        PreparedStatement ps = null;
+        ResultSet rs= null;
+        
+        String sql = "INSERT INTO reservas (valor,medio_pago)VALUES(?,?)";
+        try {
+            ps=con.prepareStatement(sql);
+            ps.setInt(1,reserva.getValor());
+            ps.setString(2, reserva.getFormaPago());
+            
+            ps.execute();
+            
+            rs=ps.executeQuery("SELECT * FROM reservas");
+            while (rs.next()) {
+                System.out.println("El ID "+rs.getInt(1));                
+            }
+            
+            return true;
+        } catch (SQLException e) {
+            System.out.println("el error es "+e);
+            return false;
+        }
+        
+    }
     public boolean registrarHuesped(Huesped huesped){
         Connection con = CrearConexion();
         PreparedStatement ps = null;
-        ResultSet rs=null;
+         ResultSet rs=null;
         
-        String sql = "INSERT INTO huesped (nombre,apellido,nacionalidad)VALUES(?,?,?)";
+        String sql = "INSERT INTO huespedes (nombre,apellido,nacionalidad)VALUES(?,?,?)";
         try {
             ps=con.prepareStatement(sql);
             ps.setString(1,huesped.getNombre());
@@ -58,12 +84,20 @@ public class ConsultasSQL extends Conector{
             ps.setString(3,huesped.getNacionalidad());
             
             ps.execute();
+            
+            
             return true;
             
         } catch (SQLException ex) {
             Logger.getLogger(ConsultasSQL.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
+    }
+    public int consultarId(){
+        
+        return 0;
+        
+    
     }
 
 }

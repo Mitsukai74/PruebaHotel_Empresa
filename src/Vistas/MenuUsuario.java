@@ -141,11 +141,14 @@ public class MenuUsuario extends javax.swing.JFrame {
         ConsultasSQL nuevaSql = new ConsultasSQL();
         Huesped hp = new Huesped();
         
+        
        hp.setNombre(txtNombre.getText());
        hp.setApellido(txtApellido.getText());
        hp.setNacionalidad(ComboBoxNac.getSelectedItem().toString());
        
+       
        if(nuevaSql.registrarHuesped(hp)){
+           
            JOptionPane.showMessageDialog(null, "Registro exitoso");
        }else{
            JOptionPane.showMessageDialog(null, "Error al guardar");
