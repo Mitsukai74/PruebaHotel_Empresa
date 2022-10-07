@@ -80,15 +80,19 @@ public class ReservasView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Reserva nuevaReserva = new Reserva(Integer.parseInt(txtValor.getText()),
-                ComboBoxPgo.getSelectedItem().toString());
+        ComboBoxPgo.getSelectedItem().toString());
         ConsultasSQL nuevasql = new ConsultasSQL();
         nuevasql.registarReserva(nuevaReserva);
-        
+
         MenuUsuario mostrarMenu = new MenuUsuario();
         mostrarMenu.setVisible(true);
-        
+                
+                
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    public int pasarID(){
+        ConsultasSQL nuevasql = new ConsultasSQL();
+        return nuevasql.idReserva;
+    }
     /**
      * @param args the command line arguments
      */

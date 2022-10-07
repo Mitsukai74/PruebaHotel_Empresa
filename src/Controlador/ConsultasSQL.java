@@ -10,11 +10,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.SQLSyntaxErrorException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ConsultasSQL extends Conector{
     Conector creandoConexion = new Conector();
+    public int idReserva;
     
      
     public boolean loginUsuario(User usr) throws ClassNotFoundException{
@@ -53,16 +55,23 @@ public class ConsultasSQL extends Conector{
         
         String sql = "INSERT INTO reservas (valor,medio_pago)VALUES(?,?)";
         try {
-            ps=con.prepareStatement(sql);
+            ps=con.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1,reserva.getValor());
             ps.setString(2, reserva.getFormaPago());
             
-            ps.execute();
+            ps.executeUpdate();
             
-            rs=ps.executeQuery("SELECT * FROM reservas");
-            while (rs.next()) {
-                System.out.println("El ID "+rs.getInt(1));                
+            try {
+                rs= ps.getGeneratedKeys();
+                while (rs.next()) {
+                System.out.println("El ID "+rs.getInt(1));
+                reserva.setId(rs.getInt(1));
+                idReserva = reserva.getId();
+                    System.out.println(idReserva);
             }
+                
+            } catch (Exception e) {
+            }        
             
             return true;
         } catch (SQLException e) {
@@ -74,7 +83,7 @@ public class ConsultasSQL extends Conector{
     public boolean registrarHuesped(Huesped huesped){
         Connection con = CrearConexion();
         PreparedStatement ps = null;
-         ResultSet rs=null;
+        ResultSet rs=null;
         
         String sql = "INSERT INTO huespedes (nombre,apellido,nacionalidad)VALUES(?,?,?)";
         try {
@@ -83,7 +92,7 @@ public class ConsultasSQL extends Conector{
             ps.setString(2,huesped.getApellido());
             ps.setString(3,huesped.getNacionalidad());
             
-            ps.execute();
+            ps.executeUpdate();
             
             
             return true;
@@ -93,11 +102,8 @@ public class ConsultasSQL extends Conector{
             return false;
         }
     }
-    public int consultarId(){
-        
-        return 0;
-        
-    
+    public String consultarId(String texto){
+             return texto;
     }
 
 }

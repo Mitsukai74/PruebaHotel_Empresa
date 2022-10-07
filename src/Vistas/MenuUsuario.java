@@ -21,6 +21,8 @@ public class MenuUsuario extends javax.swing.JFrame {
      */
     public MenuUsuario() {
         initComponents();
+        ReservasView formView = new ReservasView();
+        txtId.setText(String.valueOf(formView.pasarID()));
     }
 
     /**

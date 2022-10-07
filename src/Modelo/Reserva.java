@@ -2,7 +2,15 @@
 package Modelo;
 
 public class Reserva {
-    private int valor;
+    private int valor,id;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     private String formaPago;
 
     public Reserva(int valor,String formaPago) {
