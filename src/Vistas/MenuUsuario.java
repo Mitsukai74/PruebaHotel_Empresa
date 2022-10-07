@@ -7,6 +7,7 @@ package Vistas;
 
 import Controlador.ConsultasSQL;
 import Modelo.Huesped;
+import Modelo.Reserva;
 import javax.swing.JOptionPane;
 
 
@@ -21,8 +22,9 @@ public class MenuUsuario extends javax.swing.JFrame {
      */
     public MenuUsuario() {
         initComponents();
-        ReservasView formView = new ReservasView();
-        txtId.setText(String.valueOf(formView.pasarID()));
+        ConsultasSQL nuevasql = new ConsultasSQL();
+        Reserva nueva = new Reserva();
+         
     }
 
     /**
@@ -202,7 +204,7 @@ public class MenuUsuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField txtApellido;
-    private javax.swing.JTextField txtId;
+    public static javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

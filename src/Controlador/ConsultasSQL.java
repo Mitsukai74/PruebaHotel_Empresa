@@ -64,10 +64,10 @@ public class ConsultasSQL extends Conector{
             try {
                 rs= ps.getGeneratedKeys();
                 while (rs.next()) {
-                System.out.println("El ID "+rs.getInt(1));
+                System.out.println("El ID de la BD "+rs.getInt(1));
                 reserva.setId(rs.getInt(1));
                 idReserva = reserva.getId();
-                    System.out.println(idReserva);
+                    System.out.println("Id del módelo "+idReserva);
             }
                 
             } catch (Exception e) {

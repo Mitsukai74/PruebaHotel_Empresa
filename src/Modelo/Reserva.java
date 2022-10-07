@@ -3,6 +3,8 @@ package Modelo;
 
 public class Reserva {
     private int valor,id;
+    
+    public Reserva(){}
 
     public int getId() {
         return id;

@@ -83,16 +83,16 @@ public class ReservasView extends javax.swing.JFrame {
         ComboBoxPgo.getSelectedItem().toString());
         ConsultasSQL nuevasql = new ConsultasSQL();
         nuevasql.registarReserva(nuevaReserva);
+        int cargarID = nuevasql.idReserva;
+        System.out.println("Haberr "+cargarID);
+        
 
         MenuUsuario mostrarMenu = new MenuUsuario();
         mostrarMenu.setVisible(true);
-                
+        mostrarMenu.txtId.setText(String.valueOf(cargarID));
                 
     }//GEN-LAST:event_jButton1ActionPerformed
-    public int pasarID(){
-        ConsultasSQL nuevasql = new ConsultasSQL();
-        return nuevasql.idReserva;
-    }
+    
     /**
      * @param args the command line arguments
      */
